@@ -50,7 +50,23 @@ router.get('/results',(req,res)=>{
 router.get('/cities/faves', (req,res)=>{
   db.city.findAll()
   .then(faves =>{
-    res.render('cities/faves', { faves , mapkey: mapboxKey })
+    //create an array of geojson markers from our faves
+    let markers = faves.map(faveCity =>{
+      let markerObj = {
+        "type":"Feature",
+        "geometry":{
+          "type": "Point",
+          "coordinates": [faveCity.long , faveCity.lat]
+        },
+        "properties": {
+          "title": faveCity.name,
+          "icon" : "airport"
+        }
+      }
+      return JSON.stringify(markerObj)
+    })
+    console.log(markers)
+    res.render('cities/faves', { faves , mapkey: mapboxKey, markers })
   })
   .catch(err =>{
     console.log(err)
