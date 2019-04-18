@@ -6,6 +6,7 @@ app.use(ejsLayouts);
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("static"));
+app.use('/', require('./controllers/cities'))
 
 app.get('/', (req, res)=>{
   res.render('home')
