@@ -2,6 +2,10 @@
 <ul>
   <% faves.forEach( fave =>{ %>
     <li> <%= fave.name %> , <%= fave.state %> </li>
+    <form  action="/remove/?_method=delete" method="post">
+      <input type="hidden" name="id" value="<%= fave.id %>">
+      <input type="submit"  value="Delete <%= fave.name %>">
+    </form>
   <% }) %>
 
 </ul>
@@ -36,5 +40,5 @@ mapboxgl.accessToken = '<%= mapkey %>'
       }
     })
   })
-  
+
 </script>

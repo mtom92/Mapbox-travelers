@@ -94,5 +94,19 @@ router.post('/faves',(req,res) =>{
 })
 
 
+router.delete('/remove', (req,res) =>{
+  db.city.destroy({
+    where: {id : req.body.id }
+  })
+  .then(deletedPlace =>{
+    console.log(deletedPlace)
+    res.redirect('/cities/faves')
+  })
+  .catch(err =>{
+    console.log(err)
+    res.render('404')
+  })
+})
+
 
 module.exports = router
