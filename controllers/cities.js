@@ -50,12 +50,12 @@ router.get('/results',(req,res)=>{
 router.get('/cities/faves', (req,res)=>{
   db.city.findAll()
   .then(faves =>{
-    res.render('cities/faves', { faves })
+    res.render('cities/faves', { faves , mapkey: mapboxKey })
   })
   .catch(err =>{
     console.log(err)
     res.render('404')
-  })  
+  })
 })
 
 

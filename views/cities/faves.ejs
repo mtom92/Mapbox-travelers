@@ -1,1 +1,18 @@
-<h1>Here are your favorites cities </h1>
+<h1>Here are your favorite cities </h1>
+<ul>
+  <% faves.forEach( fave =>{ %>
+    <li> <%= fave.name %> , <%= fave.state %> </li>
+  <% }) %>
+
+</ul>
+
+<div id='map' style='width: 90%; height: 40em;'></div>
+<script>
+mapboxgl.accessToken = '<%= mapkey %>'
+ let map = new mapboxgl.Map({
+   container: 'map',
+   style: 'mapbox://styles/mapbox/streets-v11',
+   center: [-96,40.8],
+   zoom: 4
+  });
+</script>
